@@ -226,6 +226,48 @@
             .typing-text {
                 min-height: 24px;
             }
+
+            .info-page {
+                padding: 15px 15px;
+            }
+
+            .info-card {
+                padding: 24px 20px;
+            }
+
+            .info-card-heart img {
+                width: 80px !important;
+            }
+
+            .info-card-heart {
+                margin-bottom: 12px;
+            }
+
+            .info-card-title {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            .info-card-details {
+                margin: 12px 0;
+            }
+
+            .info-detail-row {
+                padding: 8px 0;
+                font-size: 14px;
+            }
+
+            .info-card-message {
+                font-size: 14px;
+                margin-top: 12px;
+                line-height: 1.4;
+            }
+
+            .info-back-button {
+                margin-top: 16px;
+                padding: 12px 32px;
+                font-size: 15px;
+            }
         }
 
         .success-message-img-wrapper {
@@ -327,31 +369,36 @@
             height: 42px;
             min-width: 42px;
             border-radius: 10px;
-            background: linear-gradient(180deg, #FF3B30 0%, #FF3B30 28%, #fff 28%, #fff 100%);
+            background: #fff;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         .notification-icon-day-name {
-            font-size: 8px;
-            font-weight: 700;
+            background: #FF3B30;
+            width: 100%;
+            font-size: 9px;
+            font-weight: 600;
             color: #fff;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
-            line-height: 1;
-            margin-top: 3px;
+            text-align: center;
+            margin: 0 !important;
+            padding: 2px 0 3px !important;
+            line-height: 1 !important;
+            display: block !important;
         }
 
         .notification-icon-day-number {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 300;
             color: #000;
-            line-height: 1;
-            margin-top: 1px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .notification-content {
@@ -1067,8 +1114,8 @@ Even though we can’t be together in person today, I can’t wait to see you ne
                                 onClick={handleNotificationClick}
                             >
                                 <div className="notification-icon">
-                                    <span className="notification-icon-day-name">Fri</span>
-                                    <span className="notification-icon-day-number">20</span>
+                                    <div className="notification-icon-day-name">FRI</div>
+                                    <div className="notification-icon-day-number">20</div>
                                 </div>
                                 <div className="notification-content">
                                     <div className="notification-header">
