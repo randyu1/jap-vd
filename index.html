@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" id="favicon" type="image/gif" href="GIFS/YES/baby-huey-gif-22.gif">
+    <link rel="apple-touch-icon" href="GIFS/YES/baby-huey-gif-22.gif">
     <title>Be My Valentine?</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -481,7 +483,7 @@
             color: #666;
             line-height: 1.6;
             margin-top: 20px;
-            font-style: bold;
+            font-weight: bold;
         }
 
         .info-back-button {
@@ -769,6 +771,18 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useMemo } = React;
 
+        const BABY_HUEY_GIF = new URL('GIFS/YES/baby-huey-gif-22.gif', window.location.href).href;
+
+        // Force favicon to absolute URL so the browser actually picks it up
+        (function setFavicon() {
+            const link = document.getElementById('favicon') || document.createElement('link');
+            link.id = 'favicon';
+            link.rel = 'icon';
+            link.type = 'image/gif';
+            link.href = BABY_HUEY_GIF;
+            if (!document.getElementById('favicon')) document.head.appendChild(link);
+        })();
+
         function ValentineApp() {
             const [showTyping1, setShowTyping1] = useState(true);
             const [showMessage1, setShowMessage1] = useState(false);
@@ -791,6 +805,7 @@
             const [showSurprisePage, setShowSurprisePage] = useState(false);
             const audioRef = useRef(null);
             const musicButtonRef = useRef(null);
+            const surpriseGifRef = useRef(null);
 
             const poem = `I hate the way you talk to me
 And the way you cut your hair
@@ -852,7 +867,13 @@ Not even at all`;
             useEffect(() => {
                 if (showSurprisePage) {
                     const timer = setTimeout(() => setShowSurprisePage(false), 11000);
-                    return () => clearTimeout(timer);
+                    // Force the GIF to restart every 4s so it never stops
+                    const gifLoop = setInterval(() => {
+                        if (surpriseGifRef.current) {
+                            surpriseGifRef.current.src = BABY_HUEY_GIF + '?' + Date.now();
+                        }
+                    }, 4000);
+                    return () => { clearTimeout(timer); clearInterval(gifLoop); };
                 }
             }, [showSurprisePage]);
 
@@ -865,7 +886,19 @@ Not even at all`;
                 audio.volume = 0.7;
                 audio.loop = true;
                 audio.play()
-                    .then(() => { setShowMusicButton(false); audioRef.current = audio; })
+                    .then(() => {
+                        setShowMusicButton(false);
+                        audioRef.current = audio;
+                        if ('mediaSession' in navigator) {
+                            navigator.mediaSession.metadata = new MediaMetadata({
+                                title: 'Be My Valentine',
+                                artist: '❤️',
+                                artwork: [
+                                    { src: BABY_HUEY_GIF, sizes: '512x512', type: 'image/gif' }
+                                ]
+                            });
+                        }
+                    })
                     .catch(() => setShowMusicButton(true));
             };
 
@@ -977,7 +1010,7 @@ Not even at all`;
                                     <span className="info-detail-icon">🗓️</span>
                                     <span>Friday, February 20th</span>
                                 </div>
-<div className="info-detail-row">
+                                <div className="info-detail-row">
                                     <span className="info-detail-icon">⌚️</span>
                                     <span>All day! Every minute with you :)</span>
                                 </div>
@@ -1006,7 +1039,7 @@ Even though we can’t be together in person today, I can’t wait to see you ne
                             <div className="surprise-title">
                                 Come back on Feb 19th<br />for a surprise
                             </div>
-                            <img src="GIFS/YES/baby-huey-gif-22.gif" alt="Baby Huey" style={{ width: '200px', height: 'auto', borderRadius: '16px' }} />
+                            <img ref={surpriseGifRef} src={BABY_HUEY_GIF} alt="Baby Huey" style={{ width: '200px', height: 'auto', borderRadius: '16px' }} />
                             <div className="surprise-subtext">Coming sooon :)</div>
                             <div className="spotify-code-wrapper">
                                 <div className="spotify-code-img">
