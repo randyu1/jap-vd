@@ -279,6 +279,230 @@
             padding: 10px 20px;
         }
 
+        /* iOS Calendar Notification */
+        .notification-banner {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 5000;
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: transform 0.15s ease, opacity 0.3s ease;
+        }
+
+        .notification-banner:active {
+            transform: translateX(-50%) scale(0.98);
+        }
+
+        .notification-banner.dismissed {
+            animation: slideUp 0.4s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+        }
+
+        @keyframes slideDown {
+            from { top: -200px; }
+            to { top: 20px; }
+        }
+
+        @keyframes slideUp {
+            from { top: 20px; opacity: 1; }
+            to { top: -200px; opacity: 0; }
+        }
+
+        .notification-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, #FF3B30 0%, #FF3B30 28%, #fff 28%, #fff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        .notification-icon-day-name {
+            font-size: 8px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1;
+            margin-top: 3px;
+        }
+
+        .notification-icon-day-number {
+            font-size: 20px;
+            font-weight: 300;
+            color: #000;
+            line-height: 1;
+            margin-top: 1px;
+        }
+
+        .notification-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .notification-app-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8E8E93;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: #8E8E93;
+        }
+
+        .notification-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .notification-body {
+            font-size: 14px;
+            color: #3C3C43;
+            line-height: 1.3;
+        }
+
+        .notification-tap-hint {
+            font-size: 12px;
+            color: #007AFF;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Valentine Info Page */
+        .info-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('blue_flowers_green_leaves_white_background_hd_preppy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            z-index: 6000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            animation: fadeIn 0.5s ease-out;
+            overflow-y: auto;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: popIn 0.5s ease-out;
+        }
+
+        .info-card-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FF69B4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .info-card-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2E6F40;
+            margin-bottom: 20px;
+        }
+
+        .info-card-heart {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .info-card-details {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .info-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .info-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-detail-icon {
+            font-size: 20px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .info-card-message {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 20px;
+            font-style: bold;
+        }
+
+        .info-back-button {
+            margin-top: 25px;
+            background: #FF69B4;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 14px 40px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .info-back-button:hover {
+            background: #FF1493;
+            transform: scale(1.05);
+        }
+
         .music-button {
             position: fixed;
             bottom: 30px;
@@ -290,7 +514,7 @@
         }
 
         .typing-text {
-            font-size: 15px;
+            font-size: 10px;
             color: #2E6F40;
             font-weight: bold;
             text-align: center;
@@ -314,7 +538,7 @@
         }
 
         .poem-button {
-            font-size: 15px;
+            font-size: 10px;
             color: #2E6F40;
             font-weight: bold;
             text-align: center;
@@ -432,6 +656,111 @@
             80% { opacity: 1; }
             100% { transform: translate(var(--tx), var(--ty)) scale(0.3); opacity: 0; }
         }
+
+        /* Surprise Teaser Page */
+        .surprise-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 7000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            animation: dimIn 2s ease-out forwards;
+        }
+
+        @keyframes dimIn {
+            from { background: rgba(0, 0, 0, 0); }
+            to { background: rgba(0, 0, 0, 0.85); }
+        }
+
+        .surprise-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            opacity: 0;
+            animation: surpriseContentIn 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes surpriseContentIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .surprise-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            line-height: 1.5;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .spotify-code-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .spotify-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1DB954;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 28px;
+            cursor: default;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+        }
+
+        .spotify-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .spotify-button span {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .spotify-code-img {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.5;
+        }
+
+        .spotify-code-bars {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 40px;
+        }
+
+        .spotify-code-bar {
+            width: 3px;
+            background: #666;
+            border-radius: 2px;
+        }
+
+        .surprise-subtext {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -456,6 +785,10 @@
             const [typedText, setTypedText] = useState('');
             const [typingComplete, setTypingComplete] = useState(false);
             const [showPoem, setShowPoem] = useState(false);
+            const [showNotification, setShowNotification] = useState(false);
+            const [notificationDismissed, setNotificationDismissed] = useState(false);
+            const [showInfoPage, setShowInfoPage] = useState(false);
+            const [showSurprisePage, setShowSurprisePage] = useState(false);
             const audioRef = useRef(null);
             const musicButtonRef = useRef(null);
 
@@ -516,6 +849,13 @@ Not even at all`;
                 return () => { clearTimeout(timer1); clearTimeout(timer2); clearTimeout(timer3); clearTimeout(timer4); };
             }, []);
 
+            useEffect(() => {
+                if (showSurprisePage) {
+                    const timer = setTimeout(() => setShowSurprisePage(false), 11000);
+                    return () => clearTimeout(timer);
+                }
+            }, [showSurprisePage]);
+
             const playMusic = () => {
                 const songs = [
                     './back ground music/Song1.mp3',
@@ -529,10 +869,44 @@ Not even at all`;
                     .catch(() => setShowMusicButton(true));
             };
 
+            const playNotificationSound = () => {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [
+                    { freq: 988, start: 0, dur: 0.12 },
+                    { freq: 1319, start: 0.14, dur: 0.12 },
+                    { freq: 1568, start: 0.28, dur: 0.18 },
+                ];
+                notes.forEach(({ freq, start, dur }) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0, ctx.currentTime + start);
+                    gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + start + 0.02);
+                    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + start + dur);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + start);
+                    osc.stop(ctx.currentTime + start + dur);
+                });
+            };
+
+            const handleNotificationClick = () => {
+                setNotificationDismissed(true);
+                setTimeout(() => {
+                    setShowNotification(false);
+                    setShowInfoPage(true);
+                }, 400);
+            };
+
             const handleYesClick = () => {
                 setAccepted(true);
                 playMusic();
                 setTimeout(() => setShowTypingAnimation(true), 4000);
+                setTimeout(() => {
+                    setShowNotification(true);
+                    playNotificationSound();
+                }, 2500);
             };
 
             const handleNoClick = () => {
@@ -589,9 +963,91 @@ Not even at all`;
                 return particles;
             }, [accepted]);
 
+            if (showInfoPage) {
+                return (
+                    <div className="info-page">
+                        <div className="info-card">
+                            <div className="info-card-heart">
+                                <img src="GIFS/giphy.gif" alt="Our day" style={{ width: '120px', height: 'auto', borderRadius: '12px' }} />
+                            </div>
+                            <div className="info-card-date">February 20, 2025</div>
+                            <div className="info-card-title">NYC Day</div>
+                            <div className="info-card-details">
+                                <div className="info-detail-row">
+                                    <span className="info-detail-icon">🗓️</span>
+                                    <span>Friday, February 20th</span>
+                                </div>
+<div className="info-detail-row">
+                                    <span className="info-detail-icon">⌚️</span>
+                                    <span>All day! Every minute with you :)</span>
+                                </div>
+                                <div className="info-detail-row">
+                                    <span className="info-detail-icon">📍</span>
+                                    <span>NYC</span>
+                                </div>
+                            </div>
+                            <div className="info-card-message">
+                                Happy Valentine’s Day to my Valentine 🙂
+Even though we can’t be together in person today, I can’t wait to see you next week! I’m really looking forward to being with you and giving you your surprises 😉 
+                            </div>
+                            <button className="info-back-button" onClick={() => { setShowInfoPage(false); setShowSurprisePage(true); }}>
+                                ← Back
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (showSurprisePage) {
+                const barHeights = [18, 30, 12, 36, 8, 28, 40, 14, 32, 10, 38, 20, 6, 34, 16, 40, 22, 8, 30, 14, 36, 18, 26, 10, 32, 40, 12, 28, 6, 34, 20, 38, 16, 24, 8, 30, 40, 14, 22, 36];
+                return (
+                    <div className="surprise-page">
+                        <div className="surprise-card">
+                            <div className="surprise-title">
+                                Come back on Feb 19th<br />for a surprise
+                            </div>
+                            <img src="GIFS/YES/baby-huey-gif-22.gif" alt="Baby Huey" style={{ width: '200px', height: 'auto', borderRadius: '16px' }} />
+                            <div className="surprise-subtext">Coming sooon :)</div>
+                            <div className="spotify-code-wrapper">
+                                <div className="spotify-code-img">
+                                    <svg viewBox="0 0 24 24" fill="#666" width="28" height="28">
+                                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                    </svg>
+                                    <div className="spotify-code-bars">
+                                        {barHeights.map((h, i) => (
+                                            <div key={i} className="spotify-code-bar" style={{ height: `${h}px` }} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
             if (accepted) {
                 return (
                     <>
+                        {showNotification && (
+                            <div
+                                className={`notification-banner ${notificationDismissed ? 'dismissed' : ''}`}
+                                onClick={handleNotificationClick}
+                            >
+                                <div className="notification-icon">
+                                    <span className="notification-icon-day-name">Fri</span>
+                                    <span className="notification-icon-day-number">20</span>
+                                </div>
+                                <div className="notification-content">
+                                    <div className="notification-header">
+                                        <span className="notification-app-name">Calendar</span>
+                                        <span className="notification-time">now</span>
+                                    </div>
+                                    <div className="notification-title">Feb 20th — NYC Day</div>
+                                    <div className="notification-body">❤️</div>
+                                    <div className="notification-tap-hint">Tap to show more info</div>
+                                </div>
+                            </div>
+                        )}
                         <div className="fireworks">{fireworks}</div>
                         <div className="container">
                             <div className="success-message">
