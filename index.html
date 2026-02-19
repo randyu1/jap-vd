@@ -263,7 +263,7 @@
                 line-height: 1.4;
             }
 
-            .info-back-button {
+            .surprise-button {
                 margin-top: 16px;
                 padding: 12px 32px;
                 font-size: 15px;
@@ -533,23 +533,133 @@
             font-weight: bold;
         }
 
-        .info-back-button {
+        .surprise-button {
             margin-top: 25px;
-            background: #FF69B4;
+            background: linear-gradient(135deg, #FFD700, #FF69B4, #FF1493, #FFD700);
+            background-size: 300% 300%;
+            animation: shimmerBtn 3s ease infinite;
             border: none;
             color: white;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: 700;
             cursor: pointer;
-            padding: 14px 40px;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            transition: all 0.3s ease;
+            padding: 15px 44px;
+            border-radius: 30px;
+            box-shadow: 0 0 18px rgba(255, 105, 180, 0.7), 0 0 40px rgba(255, 215, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.25);
         }
 
-        .info-back-button:hover {
-            background: #FF1493;
-            transform: scale(1.05);
+        .surprise-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.9), 0 0 60px rgba(255, 215, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.35);
+        }
+
+        @keyframes shimmerBtn {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Surprise Overlay Page */
+        .surprise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 9000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .surprise-overlay-gif {
+            width: 220px;
+            height: auto;
+        }
+
+        .surprise-type-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            max-width: 360px;
+            line-height: 1.7;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+            min-height: 90px;
+            white-space: pre-line;
+        }
+
+        .surprise-type-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: white;
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        .spotify-qr-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #1DB954;
+            border-radius: 16px;
+            padding: 14px 24px;
+            text-decoration: none;
+            box-shadow: 0 6px 28px rgba(29, 185, 84, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: popIn 0.55s 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        }
+
+        .spotify-qr-link:hover {
+            transform: scale(1.06);
+            box-shadow: 0 10px 38px rgba(29, 185, 84, 0.75);
+        }
+
+        .spotify-qr-bars {
+            display: flex;
+            align-items: center;
+            gap: 2.5px;
+            height: 44px;
+        }
+
+        .spotify-qr-bar {
+            width: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .surprise-close-btn {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            background: rgba(255,255,255,0.18);
+            border: none;
+            color: white;
+            font-size: 20px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            z-index: 9100;
+        }
+
+        .surprise-close-btn:hover {
+            background: rgba(255,255,255,0.32);
         }
 
         .music-button {
@@ -706,110 +816,128 @@
             100% { transform: translate(var(--tx), var(--ty)) scale(0.3); opacity: 0; }
         }
 
-        /* Surprise Teaser Page */
-        .surprise-page {
+        /* Mini Music Controller */
+        .music-controller {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            z-index: 7000;
+            top: 20px;
+            left: 20px;
+            background: rgba(12, 12, 12, 0.9);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 50px;
+            padding: 10px 20px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            z-index: 9500;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07);
+            animation: mcSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+        }
+
+        .music-controller.minimized {
+            padding: 10px 16px;
+            gap: 0;
+        }
+
+        @keyframes mcSlideIn {
+            from { opacity: 0; transform: translateY(-12px) scale(0.88); }
+            to   { opacity: 1; transform: translateY(0)     scale(1);    }
+        }
+
+        .mc-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .mc-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .mc-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
-            animation: dimIn 2s ease-out forwards;
+            font-size: 15px;
+            transition: background 0.15s ease;
+            flex-shrink: 0;
         }
 
-        @keyframes dimIn {
-            from { background: rgba(0, 0, 0, 0); }
-            to { background: rgba(0, 0, 0, 0.85); }
-        }
+        .mc-btn:hover { background: rgba(255,255,255,0.14); }
 
-        .surprise-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            opacity: 0;
-            animation: surpriseContentIn 1s ease-out 1.5s forwards;
-        }
-
-        @keyframes surpriseContentIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .surprise-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: white;
-            text-align: center;
-            line-height: 1.5;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .spotify-code-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .spotify-button {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #1DB954;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 28px;
-            cursor: default;
-            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
-        }
-
-        .spotify-button svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .spotify-button span {
+        .mc-btn.mc-play {
+            background: rgba(255,255,255,0.12);
             font-size: 16px;
-            font-weight: 600;
-            color: white;
         }
 
-        .spotify-code-img {
-            background: #2a2a2a;
-            border-radius: 12px;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            opacity: 0.5;
-        }
+        .mc-btn.mc-play:hover { background: rgba(255,255,255,0.24); }
 
-        .spotify-code-bars {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            height: 40px;
-        }
-
-        .spotify-code-bar {
-            width: 3px;
-            background: #666;
-            border-radius: 2px;
-        }
-
-        .surprise-subtext {
+        .mc-mini-icon {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-            text-align: center;
+            color: rgba(255,255,255,0.75);
         }
+
+        .mc-divider {
+            width: 1px;
+            height: 22px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* Click Me popup */
+        .gif-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .click-me-bubble {
+            position: absolute;
+            top: 50%;
+            right: -110px;
+            transform: translateY(-50%);
+            background: white;
+            color: #FF1493;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 7px 13px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            animation: clickMePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), clickMeBounce 1s 0.4s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .click-me-bubble::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -7px;
+            transform: translateY(-50%);
+            border: 7px solid transparent;
+            border-right-color: white;
+            border-left: none;
+        }
+
+        @keyframes clickMePop {
+            from { opacity: 0; transform: translateY(-50%) scale(0.6); }
+            to   { opacity: 1; transform: translateY(-50%) scale(1); }
+        }
+
+        @keyframes clickMeBounce {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50%       { transform: translateY(-50%) translateX(-5px); }
+        }
+
     </style>
 </head>
 <body>
@@ -819,6 +947,10 @@
         const { useState, useEffect, useRef, useMemo } = React;
 
         const BABY_HUEY_GIF = new URL('GIFS/YES/baby-huey-gif-22.gif', window.location.href).href;
+        const SONGS = [
+            './back ground music/Song1.mp3',
+            './back ground music/Song2.mp3'
+        ];
 
         // Force favicon to absolute URL so the browser actually picks it up
         (function setFavicon() {
@@ -850,9 +982,18 @@
             const [notificationDismissed, setNotificationDismissed] = useState(false);
             const [showInfoPage, setShowInfoPage] = useState(false);
             const [showSurprisePage, setShowSurprisePage] = useState(false);
+            const [surpriseTypedText, setSurpriseTypedText] = useState('');
+            const [surpriseTypingDone, setSurpriseTypingDone] = useState(false);
+            const [songIndex, setSongIndex] = useState(0);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [showMusicController, setShowMusicController] = useState(false);
+            const [musicControllerMinimized, setMusicControllerMinimized] = useState(false);
+            const [showClickMe, setShowClickMe] = useState(false);
             const audioRef = useRef(null);
             const musicButtonRef = useRef(null);
             const surpriseGifRef = useRef(null);
+            const songIdxRef = useRef(0);
+            const handleSongEndRef = useRef(null);
 
             const poem = `I hate the way you talk to me
 And the way you cut your hair
@@ -913,40 +1054,79 @@ Not even at all`;
 
             useEffect(() => {
                 if (showSurprisePage) {
-                    const timer = setTimeout(() => setShowSurprisePage(false), 11000);
-                    // Force the GIF to restart every 4s so it never stops
+                    setSurpriseTypedText('');
+                    setSurpriseTypingDone(false);
+                    setShowClickMe(false);
+                    const text = "You're finally back! And as promised\nHere's the surprise you waited so patiently for!\nEnjoy Beautiful ;)";
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < text.length) {
+                            setSurpriseTypedText(text.substring(0, i + 1));
+                            i++;
+                        } else {
+                            setSurpriseTypingDone(true);
+                            clearInterval(typeInterval);
+                        }
+                    }, 45);
                     const gifLoop = setInterval(() => {
                         if (surpriseGifRef.current) {
                             surpriseGifRef.current.src = BABY_HUEY_GIF + '?' + Date.now();
                         }
                     }, 4000);
-                    return () => { clearTimeout(timer); clearInterval(gifLoop); };
+                    const clickMeTimer = setTimeout(() => setShowClickMe(true), 7000);
+                    return () => { clearInterval(typeInterval); clearInterval(gifLoop); clearTimeout(clickMeTimer); };
                 }
             }, [showSurprisePage]);
 
-            const playMusic = () => {
-                const songs = [
-                    './back ground music/Song1.mp3',
-                    './back ground music/Song2.mp3'
-                ];
-                const audio = new Audio(songs[Math.floor(Math.random() * songs.length)]);
+            const startAudio = (idx) => {
+                if (audioRef.current) {
+                    audioRef.current.onended = null;
+                    audioRef.current.pause();
+                }
+                const audio = new Audio(SONGS[idx]);
                 audio.volume = 0.7;
-                audio.loop = true;
+                audio.loop = false;
+                audio.onended = () => handleSongEndRef.current();
                 audio.play()
                     .then(() => {
-                        setShowMusicButton(false);
                         audioRef.current = audio;
+                        setIsPlaying(true);
+                        setShowMusicButton(false);
                         if ('mediaSession' in navigator) {
                             navigator.mediaSession.metadata = new MediaMetadata({
                                 title: 'Be My Valentine',
                                 artist: '❤️',
-                                artwork: [
-                                    { src: BABY_HUEY_GIF, sizes: '512x512', type: 'image/gif' }
-                                ]
+                                artwork: [{ src: BABY_HUEY_GIF, sizes: '512x512', type: 'image/gif' }]
                             });
                         }
                     })
                     .catch(() => setShowMusicButton(true));
+            };
+
+            handleSongEndRef.current = () => {
+                const next = (songIdxRef.current + 1) % SONGS.length;
+                songIdxRef.current = next;
+                setSongIndex(next);
+                startAudio(next);
+            };
+
+            const playMusic = () => startAudio(songIdxRef.current);
+
+            const togglePlayPause = () => {
+                if (!audioRef.current) { startAudio(songIdxRef.current); return; }
+                if (isPlaying) {
+                    audioRef.current.pause();
+                    setIsPlaying(false);
+                } else {
+                    audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+                }
+            };
+
+            const skipNext = () => {
+                const next = (songIdxRef.current + 1) % SONGS.length;
+                songIdxRef.current = next;
+                setSongIndex(next);
+                startAudio(next);
             };
 
             const playNotificationSound = (delay = 0) => {
@@ -1043,6 +1223,70 @@ Not even at all`;
                 return particles;
             }, [accepted]);
 
+            if (showSurprisePage) {
+                const barHeights = [18, 30, 12, 36, 8, 28, 40, 14, 32, 10, 38, 20, 6, 34, 16, 40, 22, 8, 30, 14, 36, 18, 26, 10, 32, 40, 12, 28, 6, 34, 20, 38, 16, 24, 8, 30, 40, 14, 22, 36];
+                return (
+                    <div className="surprise-overlay">
+                        <button className="surprise-close-btn" onClick={() => { setShowSurprisePage(false); setShowInfoPage(false); }}>✕</button>
+                        <div className="surprise-type-text">
+                            {surpriseTypedText}
+                            {!surpriseTypingDone && <span className="surprise-type-cursor" />}
+                        </div>
+                        <div className="gif-wrapper">
+                            <img
+                                ref={surpriseGifRef}
+                                src={BABY_HUEY_GIF}
+                                alt="Baby Huey"
+                                className="surprise-overlay-gif"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => { setShowMusicController(true); setMusicControllerMinimized(false); setShowClickMe(false); }}
+                                title="Click to open music player"
+                            />
+                            {showClickMe && (
+                                <div className="click-me-bubble" onClick={() => { setShowMusicController(true); setMusicControllerMinimized(false); setShowClickMe(false); }}>
+                                    click me! 🎵
+                                </div>
+                            )}
+                        </div>
+                        {showMusicController && (
+                            <div className={`music-controller${musicControllerMinimized ? ' minimized' : ''}`}>
+                                {!musicControllerMinimized ? (
+                                    <>
+                                        <span className="mc-label">Song {songIndex + 1} / {SONGS.length}</span>
+                                        <div className="mc-divider" />
+                                        <div className="mc-controls">
+                                            <button className="mc-btn mc-play" onClick={togglePlayPause} title={isPlaying ? 'Pause' : 'Play'}>
+                                                {isPlaying ? '⏸' : '▶'}
+                                            </button>
+                                            <button className="mc-btn" onClick={skipNext} title="Next song">⏭</button>
+                                        </div>
+                                        <div className="mc-divider" />
+                                        <button className="mc-btn" onClick={() => setMusicControllerMinimized(true)} title="Minimize">—</button>
+                                    </>
+                                ) : (
+                                    <span className="mc-mini-icon">♫</span>
+                                )}
+                            </div>
+                        )}
+                        <a
+                            href="https://open.spotify.com/playlist/1JQowasBskdYHXvrJqzOCg?si=0e21c7d1cda544e7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="spotify-qr-link"
+                        >
+                            <svg viewBox="0 0 24 24" fill="white" width="34" height="34">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                            </svg>
+                            <div className="spotify-qr-bars">
+                                {barHeights.map((h, i) => (
+                                    <div key={i} className="spotify-qr-bar" style={{ height: `${h}px` }} />
+                                ))}
+                            </div>
+                        </a>
+                    </div>
+                );
+            }
+
             if (showInfoPage) {
                 return (
                     <div className="info-page">
@@ -1070,36 +1314,9 @@ Not even at all`;
                                 Happy Valentine’s Day to my Valentine 🙂
 Even though we can’t be together in person today, I can’t wait to see you next week! I’m really looking forward to being with you and giving you your surprises 😉 
                             </div>
-                            <button className="info-back-button" onClick={() => { setShowInfoPage(false); setShowSurprisePage(true); }}>
-                                ← Back
+                            <button className="surprise-button" onClick={() => setShowSurprisePage(true)}>
+                                Surprise!
                             </button>
-                        </div>
-                    </div>
-                );
-            }
-
-            if (showSurprisePage) {
-                const barHeights = [18, 30, 12, 36, 8, 28, 40, 14, 32, 10, 38, 20, 6, 34, 16, 40, 22, 8, 30, 14, 36, 18, 26, 10, 32, 40, 12, 28, 6, 34, 20, 38, 16, 24, 8, 30, 40, 14, 22, 36];
-                return (
-                    <div className="surprise-page">
-                        <div className="surprise-card">
-                            <div className="surprise-title">
-                                Come back on Feb 19th<br />for a surprise
-                            </div>
-                            <img ref={surpriseGifRef} src={BABY_HUEY_GIF} alt="Baby Huey" style={{ width: '200px', height: 'auto', borderRadius: '16px' }} />
-                            <div className="surprise-subtext">Coming sooon :)</div>
-                            <div className="spotify-code-wrapper">
-                                <div className="spotify-code-img">
-                                    <svg viewBox="0 0 24 24" fill="#666" width="28" height="28">
-                                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                                    </svg>
-                                    <div className="spotify-code-bars">
-                                        {barHeights.map((h, i) => (
-                                            <div key={i} className="spotify-code-bar" style={{ height: `${h}px` }} />
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 );
@@ -1132,7 +1349,13 @@ Even though we can’t be together in person today, I can’t wait to see you ne
                         <div className="container">
                             <div className="success-message">
                                 <div className="success-message-img-wrapper">
-                                    <img src="GIFS/YES/images.png" alt="Celebration" />
+                                    <img
+                                        src="GIFS/YES/images.png"
+                                        alt="Celebration"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => { setShowMusicController(true); setMusicControllerMinimized(false); }}
+                                        title="Click to open music player"
+                                    />
                                 </div>
                                 <p>I'm so glad you said yes!</p>
                                 <div className="quote-section">
@@ -1163,6 +1386,26 @@ Even though we can’t be together in person today, I can’t wait to see you ne
                             <button ref={musicButtonRef} className="music-button" onClick={playMusic}>
                                 Click to Play Music
                             </button>
+                        )}
+                        {showMusicController && (
+                            <div className={`music-controller${musicControllerMinimized ? ' minimized' : ''}`}>
+                                {!musicControllerMinimized ? (
+                                    <>
+                                        <span className="mc-label">Song {songIndex + 1} / {SONGS.length}</span>
+                                        <div className="mc-divider" />
+                                        <div className="mc-controls">
+                                            <button className="mc-btn mc-play" onClick={togglePlayPause} title={isPlaying ? 'Pause' : 'Play'}>
+                                                {isPlaying ? '⏸' : '▶'}
+                                            </button>
+                                            <button className="mc-btn" onClick={skipNext} title="Next song">⏭</button>
+                                        </div>
+                                        <div className="mc-divider" />
+                                        <button className="mc-btn" onClick={() => setMusicControllerMinimized(true)} title="Minimize">—</button>
+                                    </>
+                                ) : (
+                                    <span className="mc-mini-icon">♫</span>
+                                )}
+                            </div>
                         )}
                     </>
                 );
