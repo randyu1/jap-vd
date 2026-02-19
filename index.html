@@ -1244,7 +1244,7 @@ Not even at all`;
                             />
                             {showClickMe && (
                                 <div className="click-me-bubble" onClick={() => { setShowMusicController(true); setMusicControllerMinimized(false); setShowClickMe(false); }}>
-                                    click me! 🎵
+                                    click here :)
                                 </div>
                             )}
                         </div>
@@ -1256,9 +1256,9 @@ Not even at all`;
                                         <div className="mc-divider" />
                                         <div className="mc-controls">
                                             <button className="mc-btn mc-play" onClick={togglePlayPause} title={isPlaying ? 'Pause' : 'Play'}>
-                                                {isPlaying ? '⏸' : '▶'}
+                                                {isPlaying ? '‖' : '▶︎'}
                                             </button>
-                                            <button className="mc-btn" onClick={skipNext} title="Next song">⏭</button>
+                                            <button className="mc-btn" onClick={skipNext} title="Next song">▷</button>
                                         </div>
                                         <div className="mc-divider" />
                                         <button className="mc-btn" onClick={() => setMusicControllerMinimized(true)} title="Minimize">—</button>
